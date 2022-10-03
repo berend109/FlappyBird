@@ -29,5 +29,17 @@ namespace pacman
         {
             Application.Current.Shutdown();
         }
+
+        private void HighscoresButtonClick(object sender, RoutedEventArgs e)
+        {
+            Highscores gw = new Highscores();
+            gw.Visibility = Visibility.Visible;
+        }
+
+        private void StartGameButtonClick(object sender, RoutedEventArgs e)
+        {
+            GameWindow gw = new GameWindow();
+            gw.Visibility = Visibility.Visible;
+        }
     }
 }

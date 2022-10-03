@@ -19,8 +19,8 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Button>Start Game</Button>
-            <Button Grid.Row="1">Highscores</Button>
+            <Button Click="StartGameButtonClick">Start Game</Button>
+            <Button Grid.Row="1" Click="HighscoresButtonClick">Highscores</Button>
             <Button Grid.Row="2" Click="QuitButtonClick">Quit</Button>
             <Button Grid.Row="3"></Button>
         </Grid>

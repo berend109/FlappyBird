@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\school\jaar1.2\periode_1\programmeren\FlappyBird\pacman\App.xaml
-11407045341
+31886355778
 
-5-1132104205
+7403086784
 194-1103864946
-MainWindow.xaml;
+GameWindow.xaml;Highscores.xaml;MainWindow.xaml;
 
 True
 
