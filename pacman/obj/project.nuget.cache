@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RduPWQxwrLG5iAPL57MxKQs0Ahtnwm5z3MFlwWSNgmSjDg1eVm3/PHXJlP+8cnU+m99xY3LECfFw3gSgkoDbEw==",
+  "dgSpecHash": "K2eiWEnrMUJ27yy4THTLz6f4sf91kbtoEbsA4XfHooyYWZyukSewuSjtj92Q6PpvB5rExbNKJIEs25xEmAZxrw==",
   "success": true,
-  "projectFilePath": "C:\\school\\jaar1.2\\periode_1\\programmeren\\pacman\\pacman.csproj",
+  "projectFilePath": "C:\\school\\jaar1.2\\periode_1\\programmeren\\FlappyBird\\pacman\\pacman.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

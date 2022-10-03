@@ -24,5 +24,10 @@ namespace pacman
         {
             InitializeComponent();
         }
+
+        private void QuitButtonClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

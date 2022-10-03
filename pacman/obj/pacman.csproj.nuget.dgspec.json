@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\school\\jaar1.2\\periode_1\\programmeren\\pacman\\pacman.csproj": {}
+    "C:\\school\\jaar1.2\\periode_1\\programmeren\\FlappyBird\\pacman\\pacman.csproj": {}
   },
   "projects": {
-    "C:\\school\\jaar1.2\\periode_1\\programmeren\\pacman\\pacman.csproj": {
+    "C:\\school\\jaar1.2\\periode_1\\programmeren\\FlappyBird\\pacman\\pacman.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\school\\jaar1.2\\periode_1\\programmeren\\pacman\\pacman.csproj",
+        "projectUniqueName": "C:\\school\\jaar1.2\\periode_1\\programmeren\\FlappyBird\\pacman\\pacman.csproj",
         "projectName": "pacman",
-        "projectPath": "C:\\school\\jaar1.2\\periode_1\\programmeren\\pacman\\pacman.csproj",
+        "projectPath": "C:\\school\\jaar1.2\\periode_1\\programmeren\\FlappyBird\\pacman\\pacman.csproj",
         "packagesPath": "C:\\Users\\keesv_yg43x94\\.nuget\\packages\\",
-        "outputPath": "C:\\school\\jaar1.2\\periode_1\\programmeren\\pacman\\obj\\",
+        "outputPath": "C:\\school\\jaar1.2\\periode_1\\programmeren\\FlappyBird\\pacman\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\keesv_yg43x94\\AppData\\Roaming\\NuGet\\NuGet.Config",
