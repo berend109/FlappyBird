@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RacingGame", "RacingGame\RacingGame.csproj", "{345AFFA6-5DCE-4FEF-A140-155EF28C0003}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfRacingGame", "WpfRacingGame\WpfRacingGame.csproj", "{1A67BB67-BE89-4625-B94E-E2B20E607969}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{345AFFA6-5DCE-4FEF-A140-155EF28C0003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{345AFFA6-5DCE-4FEF-A140-155EF28C0003}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{345AFFA6-5DCE-4FEF-A140-155EF28C0003}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{345AFFA6-5DCE-4FEF-A140-155EF28C0003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A67BB67-BE89-4625-B94E-E2B20E607969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A67BB67-BE89-4625-B94E-E2B20E607969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A67BB67-BE89-4625-B94E-E2B20E607969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A67BB67-BE89-4625-B94E-E2B20E607969}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC6F0094-02E4-4010-809A-654D561D81BF}
+		SolutionGuid = {CF39F53A-7006-44FF-8F6A-96C4B8E33FAE}
 	EndGlobalSection
 EndGlobal

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RacingGame.Properties
+namespace WpfRacingGame.Properties
 {
 
 

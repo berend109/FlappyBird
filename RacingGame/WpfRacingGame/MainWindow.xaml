@@ -1,0 +1,39 @@
+﻿<Window x:Class="WpfRacingGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfRacingGame"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <!-- Het gele Grid -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <!-- Het groene Grid -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <Button Content="Play"/>
+                <Button Content="High Score"/>
+                <Button Content="Settings"/>
+                <Button Content="Quit"/>
+            </StackPanel>
+            <Image x:Name="MainImage" Grid.Column="1" Source="/BMWM1.webp" />
+        </Grid>
+        <Label 
+            Grid.Row="0"
+            FontFamily="Comic Sans MS"
+            FontSize="36"
+            FontWeight="Bold"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            Content="My Epic Game" />
+    </Grid>
+
+</Window>
