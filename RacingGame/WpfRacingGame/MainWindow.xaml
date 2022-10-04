@@ -24,7 +24,7 @@
                 <Button Content="Settings"/>
                 <Button Content="Quit"/>
             </StackPanel>
-            <Image x:Name="MainImage" Grid.Column="1" Source="/BMWM1.webp" />
+            <Image x:Name="MainImage" Grid.Column="1" Source="Assets/Images/BMWM1.webp" />
         </Grid>
         <Label 
             Grid.Row="0"
