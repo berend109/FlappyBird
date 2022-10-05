@@ -189,9 +189,49 @@ namespace pacman
                         NoUp= true;
                         GoUp = false;
                     }
+
+                }
+                if ((string)x.Tag == "coin")
+                {
+                    if (pacmanhitBox.IntersectsWith(hitbox) && x.Visibility == Visibility.Visible)
+                    {
+                        x.Visibility = Visibility.Hidden;
+                        Score++;
+                    }
                 }
 
+                if ((string) x.Tag == "ghost")
+                {
+                    if (pacmanhitBox.IntersectsWith(hitbox))
+                    {
+                        GameOver("ghost got you, click ok to play again");
+                    }
 
+                    if (x.Name.ToString() == "orangeguy")
+                    {
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) - GhostSpeed);
+                    }
+                    else
+                    {
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) + GhostSpeed);
+                    }
+
+                    CurrentghostStep--;
+
+                    if (CurrentghostStep < 1)
+                    {
+                        CurrentghostStep = GhostMoveStep;
+                        GhostSpeed = -GhostSpeed;
+                    }
+
+                }
+            }
+
+            //85 coins
+
+            if (Score == 85)
+            {
+                GameOver("you win you collected all the coins");
             }
 
         }
