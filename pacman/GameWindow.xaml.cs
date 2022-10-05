@@ -44,7 +44,45 @@ namespace pacman
 
         private void CanvasKeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Left && NoLeft == false)
+            {
+                GoRight = GoUp = GoDown = false;
+                NoRight = NoUp = NoDown = false;
 
+                GoLeft = true;
+
+                pacman.RenderTransform = new RotateTransform(-180, pacman.Width / 2, pacman.Height / 2);
+            }
+
+            if (e.Key == Key.Right && NoRight == false)
+            {
+                GoLeft = GoUp = GoDown = false;
+                NoLeft = NoUp = NoDown = false;
+
+                GoRight = true;
+
+                pacman.RenderTransform = new RotateTransform(0, pacman.Width / 2, pacman.Height / 2);
+            }
+
+            if (e.Key == Key.Up && NoUp == false)
+            {
+                GoRight = GoLeft = GoDown = false;
+                NoRight = NoLeft = NoDown = false;
+
+                GoUp = true;
+
+                pacman.RenderTransform = new RotateTransform(-90, pacman.Width / 2, pacman.Height / 2);
+            }
+
+            if (e.Key == Key.Down && NoDown == false)
+            {
+                GoRight = GoUp = GoLeft= false;
+                NoRight = NoUp = NoLeft = false;
+
+                GoDown = true;
+
+                pacman.RenderTransform = new RotateTransform(90, pacman.Width / 2, pacman.Height / 2);
+            }
         }
 
         private void GameSetup()
@@ -81,9 +119,13 @@ namespace pacman
             
         }
 
-        private void GameOver()
-        { 
-        
+        private void GameOver(string message)
+        {
+            gametimer.Stop();
+            MessageBox.Show(message, "game over");
+
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
         }
     }
 }
