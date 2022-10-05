@@ -114,6 +114,8 @@
         <Rectangle Tag="coin" Height="10" Width="10" Fill="Gold" Canvas.Left="318" Canvas.Top="510" />
         <Rectangle Tag="coin" Height="10" Width="10" Fill="Gold" Canvas.Left="350" Canvas.Top="544" />
         <Rectangle Tag="coin" Height="10" Width="10" Fill="Gold" Canvas.Left="350" Canvas.Top="510" />
+        
+        
 
     </Canvas>
 </Window>
