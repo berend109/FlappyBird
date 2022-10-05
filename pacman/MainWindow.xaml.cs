@@ -34,12 +34,15 @@ namespace pacman
         {
             Highscores gw = new Highscores();
             gw.Visibility = Visibility.Visible;
+            this.Close();
+
         }
 
         private void StartGameButtonClick(object sender, RoutedEventArgs e)
         {
             GameWindow gw = new GameWindow();
             gw.Visibility = Visibility.Visible;
+            this.Close();
         }
     }
 }
