@@ -24,5 +24,15 @@ namespace WpfRacingGame
         {
             InitializeComponent();
         }
+
+        private void QuitButtonClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void StartGameBtn(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
