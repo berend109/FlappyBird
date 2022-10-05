@@ -116,7 +116,84 @@ namespace pacman
 
         private void Gameloop(object? sender, EventArgs e)
         {
-            
+            txtScore.Content = "score: " + Score;
+
+            if (GoRight)
+            {
+                Canvas.SetLeft(pacman, Canvas.GetLeft(pacman) + speed);
+            }
+            if (GoLeft)
+            {
+                Canvas.SetLeft(pacman, Canvas.GetLeft(pacman) - speed);
+            }
+            if (GoUp)
+            {
+                Canvas.SetTop(pacman, Canvas.GetTop(pacman) - speed);
+            }
+            if (GoDown)
+            {
+                Canvas.SetTop(pacman, Canvas.GetTop(pacman) + speed);
+            }
+
+
+            if (GoDown && Canvas.GetTop(pacman) + 80 > Application.Current.MainWindow.Height)
+            {
+                NoDown = true;
+                GoDown = false;
+            }
+            if (GoUp && Canvas.GetTop(pacman) < 1)
+            {
+                NoUp = true;
+                GoUp = false;
+            }
+            if (GoLeft && Canvas.GetLeft(pacman) - 10 < 1)
+            {
+                NoLeft = true;
+                GoLeft = false;
+            }
+            if (GoRight && Canvas.GetLeft(pacman) + 70 > Application.Current.MainWindow.Width)
+            {
+                NoRight = true;
+                GoRight = false;
+            }
+
+            pacmanhitBox = new Rect(Canvas.GetLeft(pacman), Canvas.GetTop(pacman), pacman.Width, pacman.Height);
+
+            foreach (var x in MyCanvas.Children.OfType<Rectangle>())
+            {
+                Rect hitbox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+
+                if ((string)x.Tag == "wall")
+                {
+                    if (GoLeft == true && pacmanhitBox.IntersectsWith(hitbox))
+                    {
+                        Canvas.SetLeft(pacman, Canvas.GetLeft(pacman) + 10);
+                        NoLeft = true;
+                        GoLeft = false;
+                    }
+                    if (GoRight == true && pacmanhitBox.IntersectsWith(hitbox))
+                    {
+                        Canvas.SetLeft(pacman, Canvas.GetLeft(pacman) - 10);
+                        NoRight = true;
+                        GoRight = false;
+                    }
+                    if (GoDown == true && pacmanhitBox.IntersectsWith(hitbox))
+                    {
+                        Canvas.SetTop(pacman, Canvas.GetTop(pacman) - 10);
+                        NoDown = true;
+                        GoDown = false;
+                    }
+                    if (GoUp == true && pacmanhitBox.IntersectsWith(hitbox))
+                    {
+                        Canvas.SetTop(pacman, Canvas.GetTop(pacman) + 10);
+                        NoUp= true;
+                        GoUp = false;
+                    }
+                }
+
+
+            }
+
         }
 
         private void GameOver(string message)
