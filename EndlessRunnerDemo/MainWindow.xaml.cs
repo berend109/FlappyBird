@@ -214,6 +214,8 @@ namespace EndlessRunnerDemo
             gameTimer.Start();
         }
 
+
+        //running sprite animation
         private void RunSprite(double i)
         {
             switch (i)
