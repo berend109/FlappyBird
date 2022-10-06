@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pacman"
         mc:Ignorable="d"
-        Title="Highscores" Height="450" Width="800">
+        Title="Highscores" Height="450" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="225"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="1"
+               Content="Highscores" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Center" Height="57" Width="186"/>
+        <Button Height="50" Width="100" Margin="83,17,84,17" Grid.Row="3">reset</Button>
+        <Button Height="50" Width="100" Grid.Column="2" Margin="84,17,83,17" Grid.Row="3" Click="ScoresNaarMain">back</Button>
     </Grid>
 </Window>

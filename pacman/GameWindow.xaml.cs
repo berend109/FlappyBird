@@ -159,6 +159,8 @@ namespace pacman
 
             pacmanhitBox = new Rect(Canvas.GetLeft(pacman), Canvas.GetTop(pacman), pacman.Width, pacman.Height);
 
+
+            //TODO nog comment maken voor wall collision
             foreach (var x in MyCanvas.Children.OfType<Rectangle>())
             {
                 Rect hitbox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
@@ -191,6 +193,8 @@ namespace pacman
                     }
 
                 }
+
+                //TODO comment maken voor coin collision
                 if ((string)x.Tag == "coin")
                 {
                     if (pacmanhitBox.IntersectsWith(hitbox) && x.Visibility == Visibility.Visible)
@@ -200,6 +204,8 @@ namespace pacman
                     }
                 }
 
+
+                //TODO ghost collision comment maken
                 if ((string) x.Tag == "ghost")
                 {
                     if (pacmanhitBox.IntersectsWith(hitbox))
