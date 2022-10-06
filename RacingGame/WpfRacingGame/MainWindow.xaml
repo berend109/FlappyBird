@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfRacingGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        Height="517" Width="920"
+        >
     <Grid>
         <!-- Het gele Grid -->
         <Grid.RowDefinitions>
@@ -19,10 +21,10 @@
                 <ColumnDefinition Width="3*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <Button Content="Play" Click="StartGameBtn"/>
+                <Button Height="50" Width="150" Content="Play" Click="StartGameBtn"/>
+                <Button Height="50" Width="150" Content="Quit" Click="QuitButtonClick"/>
                 <!--<Button Content="High Score"/>
                 <Button Content="Settings"/>-->
-                <Button Content="Quit" Click="QuitButtonClick"/>
             </StackPanel>
             <Image x:Name="MainImage" Grid.Column="1" Source="Assets/Images/BMWM1.webp" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
             <Label

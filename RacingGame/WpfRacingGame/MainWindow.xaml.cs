@@ -32,7 +32,9 @@ namespace WpfRacingGame
 
         private void StartGameBtn(object sender, RoutedEventArgs e)
         {
-
+            GameView gameView = new GameView();
+            gameView.Show();
+            this.Close();
         }
     }
 }
