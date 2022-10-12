@@ -19,6 +19,10 @@
 
         <Label Name="scoreText" Foreground="White" FontSize="32" FontWeight="Bold" Content="Score: 0" />
 
+        <DataGrid Name="dtGridHighscores" ItemsSource="{Binding}">
+            
+        </DataGrid>
+
 
 
 

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +49,9 @@ namespace EndlessRunnerDemo
 
         int score = 0;
 
+        //might need to download and reference the connector. Download: https://dev.mysql.com/downloads/connector/net/ 
+        string connectionSting = "SERVER=localhost;DATABASE=highscores;UID=root;PASSWORD=;";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -60,6 +65,8 @@ namespace EndlessRunnerDemo
 
             background.Fill = backgroundSprite;
             background2.Fill = backgroundSprite;
+
+            
 
             StartGame();
             
@@ -155,6 +162,31 @@ namespace EndlessRunnerDemo
                 player.StrokeThickness = 1;
 
                 scoreText.Content = "Score: " + score + " Press Enter to play again.";
+
+                //Connect to DB
+                MySqlConnection connection = new MySqlConnection(connectionSting);
+           
+                //open connection
+                connection.Open();
+
+                //Add score to DB
+                MySqlCommand addScore = new MySqlCommand();
+                addScore.CommandText = "INSERT INTO scores (score) VALUES (@score)";
+                addScore.Parameters.AddWithValue("@score", score);
+                addScore.Connection = connection;
+                addScore.ExecuteNonQuery();
+
+
+                //Retreive scores from DB
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM scores ORDER BY score DESC", connection);
+
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+                connection.Close();
+
+                //Give retreives scores to the DataGrid
+                dtGridHighscores.DataContext = dt;
+               
             }
             else
             {
