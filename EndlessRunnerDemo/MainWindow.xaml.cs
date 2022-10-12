@@ -49,6 +49,8 @@ namespace EndlessRunnerDemo
 
         int score = 0;
 
+        //TODO Check if Database and Table exist. If not, make it.
+
         //might need to download and reference the connector. Download: https://dev.mysql.com/downloads/connector/net/ 
         string connectionSting = "SERVER=localhost;DATABASE=highscores;UID=root;PASSWORD=;";
 
