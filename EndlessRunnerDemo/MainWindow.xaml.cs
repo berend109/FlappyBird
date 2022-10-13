@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -169,12 +170,15 @@ namespace EndlessRunnerDemo
                 //open connection
                 connection.Open();
 
-                //Add score to DB
-                MySqlCommand addScore = new MySqlCommand();
-                addScore.CommandText = "INSERT INTO scores (score) VALUES (@score)";
-                addScore.Parameters.AddWithValue("@score", score);
-                addScore.Connection = connection;
-                addScore.ExecuteNonQuery();
+                if(score > 0)
+                {
+                    //Add score to DB
+                    MySqlCommand addScore = new MySqlCommand();
+                    addScore.CommandText = "INSERT INTO scores (score) VALUES (@score)";
+                    addScore.Parameters.AddWithValue("@score", score);
+                    addScore.Connection = connection;
+                    addScore.ExecuteNonQuery();
+                }             
 
 
                 //Retreive scores from DB
@@ -183,7 +187,7 @@ namespace EndlessRunnerDemo
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
                 connection.Close();
-
+               
                 //Give retreives scores to the DataGrid
                 dtGridHighscores.DataContext = dt;
                
@@ -200,6 +204,12 @@ namespace EndlessRunnerDemo
             if (e.Key == Key.Enter && gameOver == true)
             {
                 StartGame();
+            }
+
+            if (e.Key == Key.H && gameOver == true)
+            {
+                HighscoreWindow win2 = new HighscoreWindow();
+                win2.Show();
             }
 
             if (e.Key == Key.Space && isJumping == false && Canvas.GetTop(player) > 250)
