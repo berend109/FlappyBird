@@ -8,16 +8,16 @@ using System.Windows.Threading;
 
 namespace FlappyBird
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
-		DispatcherTimer timer = new();
-		int gravity = 8;
-		double score;
-		Rect flappyRect;
-		bool gameOver;
+		private double gravity;
+		private int score;
+		private bool gameOver;
+
+		private bool spaceIsHeld;
+
+		private readonly DispatcherTimer timer = new();
+		private readonly Random random = new();
 
 		public MainWindow()
 		{
@@ -29,108 +29,144 @@ namespace FlappyBird
 			StartGame();
 		}
 
-		private void Canvas_KeyisDown(object sender, KeyEventArgs e)
+		private void KeyIsDown(object? sender, KeyEventArgs e)
 		{
 			if(e.Key == Key.Space)
 			{
-				flappyBird.RenderTransform = new RotateTransform(-20, flappyBird.Width / 2, flappyBird.Height / 2);
-				gravity = -8;
+				if(!spaceIsHeld)
+				{
+					spaceIsHeld = true;
+					gravity = -4;
+				}
 			}
+
 			if(e.Key == Key.R && gameOver)
 			{
 				StartGame();
 			}
 		}
 
-		private void Canvas_KeyisUp(object sender, KeyEventArgs e)
+		private void KeyIsUp(object? sender, KeyEventArgs e)
 		{
-			flappyBird.RenderTransform = new RotateTransform(5, flappyBird.Width / 2, flappyBird.Height / 2);
-			gravity = 8;
+			if(spaceIsHeld)
+			{
+				spaceIsHeld = false;
+			}
 		}
-
+		
 		private void StartGame()
 		{
-			int offset = 200;
 			score = 0;
-			Canvas.SetTop(flappyBird, 100);
+			gravity = -4;
 			gameOver = false;
 
-			foreach(var x in MyCanvas.Children.OfType<Image>())
+			Canvas.SetTop(flappyBird, 114);
+
+			var obstacles = mainCanvas.Children.OfType<Canvas>().Where(o => o.Name.ToLower().StartsWith("obstacle")).ToArray();
+
+			for(int i = 0; i < obstacles.Length; i++)
 			{
-				if((string)x.Tag == "obs1")
+				var obstacle = obstacles[i];
+				var indexPlusOne = i + 1;
+
+				Canvas.SetTop(obstacle, -random.Next(141));
+				if(obstacle.Name == "obstacle" + indexPlusOne)
 				{
-					Canvas.SetLeft(x, 500);
+					Canvas.SetLeft(obstacle, 100 * indexPlusOne);
 				}
-				if((string)x.Tag == "obs2")
+			}
+
+			var clouds = mainCanvas.Children.OfType<Image>().Where(o => o.Name.ToLower().StartsWith("cloud")).ToArray();
+
+			for(int i = 0; i < clouds.Length; i++)
+			{
+				var cloud = clouds[i];
+				var indexPlusOne = i + 1;
+
+				if(cloud.Name == "cloud" + indexPlusOne)
 				{
-					Canvas.SetLeft(x, 800);
-				}
-				if((string)x.Tag == "obs3")
-				{
-					Canvas.SetLeft(x, 1000);
-				}
-				if((string)x.Tag == "clouds")
-				{
-					Canvas.SetLeft(x, 300 + offset);
-					offset = 800;
+					Canvas.SetLeft(cloud, random.Next(50, 223));
 				}
 			}
 
 			timer.Start();
 		}
 
+		private void StopGame()
+		{
+			timer.Stop();
+			gameOver = true;
+			scoreLabel.Content += "   Game over, press R to try again.";
+		}
+
 		private void GameEngine(object? sender, EventArgs e)
 		{
-			scoreText.Content = "Score: " + score;
-			flappyRect = new Rect(Canvas.GetLeft(flappyBird), Canvas.GetTop(flappyBird), flappyBird.Width - 12, flappyBird.Height - 6);
-			Canvas.SetTop(flappyBird, Canvas.GetTop(flappyBird) + gravity);
-
-			if(Canvas.GetTop(flappyBird) + flappyBird.Height > 490 || Canvas.GetTop(flappyBird) < -30)
+			if(gravity >= 8)
 			{
-				timer.Stop();
-				gameOver = true;
-				scoreText.Content += "   Press R to try again.";
+				gravity = 8;
+			}
+			else
+			{
+				gravity += 0.4;
 			}
 
-			foreach(var x in MyCanvas.Children.OfType<Image>())
+			flappyBird.RenderTransform = new RotateTransform(gravity * 15, flappyBird.Width * 0.5, flappyBird.Height * 0.5);
+
+			scoreLabel.Content = "Score: " + score;
+			Rect flappyRect = new(Canvas.GetLeft(flappyBird), Canvas.GetTop(flappyBird), flappyBird.Width, flappyBird.Height);
+			Canvas.SetTop(flappyBird, Canvas.GetTop(flappyBird) + gravity);
+
+			if(Canvas.GetTop(flappyBird) <= -flappyBird.Height || Canvas.GetTop(flappyBird) >= mainCanvas.Height)
 			{
-				if((string)x.Tag == "obs1" || (string)x.Tag == "obs2" || (string)x.Tag == "obs3")
+				StopGame();
+			}
+
+			foreach(var pipes in mainCanvas.Children.OfType<Canvas>().Where(o => o.Name.ToLower().StartsWith("obstacle")))
+			{
+				foreach(var pipe in pipes.Children.OfType<Image>())
 				{
-					Canvas.SetLeft(x, Canvas.GetLeft(x) - 5);
-					Rect pillars = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+					Rect pillars = new(Canvas.GetLeft(pipes), Canvas.GetTop(pipes) + Canvas.GetTop(pipe), 26, 160);
 
 					if(flappyRect.IntersectsWith(pillars))
 					{
-						timer.Stop();
-						gameOver = true;
-						scoreText.Content += "   Press R to try again.";
+						StopGame();
 					}
 				}
 
-				if((string)x.Tag == "obs1" && Canvas.GetLeft(x) < -100)
-				{
-					Canvas.SetLeft(x, 800);
-					score += 0.5;
-				}
-				if((string)x.Tag == "obs2" && Canvas.GetLeft(x) < -200)
-				{
-					Canvas.SetLeft(x, 800);
-					score += 0.5;
-				}
-				if((string)x.Tag == "obs3" && Canvas.GetLeft(x) < -250)
-				{
-					Canvas.SetLeft(x, 800);
-					score += 0.5;
-				}
+				Canvas.SetLeft(pipes, Canvas.GetLeft(pipes) - 2);
 
-				if((string)x.Tag == "clouds")
+				if((string)pipes.Tag == "up")
 				{
-					Canvas.SetLeft(x, Canvas.GetLeft(x) - .6);
-
-					if(Canvas.GetLeft(x) < -220)
+					Canvas.SetTop(pipes, Canvas.GetTop(pipes) - 1);
+					if(Canvas.GetTop(pipes) <= -140)
 					{
-						Canvas.SetLeft(x, 550);
+						pipes.Tag = "down";
 					}
+				}
+				else if((string)pipes.Tag == "down")
+				{
+					Canvas.SetTop(pipes, Canvas.GetTop(pipes) + 1);
+					if(Canvas.GetTop(pipes) >= 0)
+					{
+						pipes.Tag = "up";
+					}
+				}
+
+				if(Canvas.GetLeft(pipes) < -26)
+				{
+					Canvas.SetLeft(pipes, Canvas.GetLeft(pipes) + 400);
+					Canvas.SetTop(pipes, -random.Next(141));
+					score += 1;
+				}
+			}
+
+			foreach(var image in mainCanvas.Children.OfType<Image>().Where(o => o.Name.ToLower().StartsWith("cloud")))
+			{
+				Canvas.SetLeft(image, Canvas.GetLeft(image) - 1);
+
+				if(Canvas.GetLeft(image) < -image.Width)
+				{
+					Canvas.SetLeft(image, random.Next(320, 421));
 				}
 			}
 		}

@@ -5,21 +5,32 @@
 				xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 				xmlns:local="clr-namespace:FlappyBird"
 				mc:Ignorable="d"
-				Title="Flappy Bird by Sil" Height="490" Width="525" KeyDown="Canvas_KeyisDown" KeyUp="Canvas_KeyisUp">
-	<Canvas Name="MyCanvas" Focusable="True" Background="LightBlue">
-		<Image Height="145" Width="207" Source="images/clouds.png" Canvas.Left="20" Canvas.Top="10" Tag="clouds"/>
-		<Image Height="145" Width="207" Source="images/clouds2.png" Canvas.Left="300" Canvas.Top="96" Tag="clouds"/>
-		
-		<Image Height="389" Width="75" Source="images/pipeBottom.png"  Canvas.Left="107" Canvas.Top="283" Tag="obs1"/>
-		<Image Height="387" Width="66" Source="images/pipeTop.png" Canvas.Left="107" Canvas.Top="-254" Tag="obs1"/>
-		
-		<Image Height="389" Width="75" Source="images/pipeBottom.png"  Canvas.Left="280" Canvas.Top="327" Tag="obs2"/>
-		<Image Height="387" Width="66" Source="images/pipeTop.png" Canvas.Left="280" Canvas.Top="-182" Tag="obs2"/>
-		
-		<Image Height="389" Width="75" Source="images/pipeBottom.png"  Canvas.Left="451" Canvas.Top="224" Tag="obs3"/>
-		<Image Height="387" Width="66" Source="images/pipeTop.png" Canvas.Left="451" Canvas.Top="-291" Tag="obs3"/>
-		
-		<Label Name="scoreText" FontSize="20" Content="Score: 0" />
-		<Image Stretch="Fill" Name="flappyBird" Height="37" Width="50" Source="images/flappyBird.png" Canvas.Left="20" Canvas.Top="174" />
+				Title="Flappy Bird" KeyDown="KeyIsDown" KeyUp="KeyIsUp" SizeToContent="WidthAndHeight">
+	<Canvas Height="240" Width="320" Name="mainCanvas" Background="LightBlue" RenderOptions.BitmapScalingMode="NearestNeighbor">
+		<Image Name="cloud1" Height="24" Width="32" Source="images/cloud.png" Canvas.Left="50" Canvas.Top="25"/>
+		<Image Name="cloud2" Height="24" Width="48" Source="images/clouds.png" Canvas.Left="222" Canvas.Top="50"/>
+
+		<Canvas Name="obstacle1" Canvas.Left="100" Canvas.Top="0" Tag="up">
+			<Image Height="160" Width="26" Source="images/pipe_bottom.png" Canvas.Top="220"/>
+			<Image Height="160" Width="26" Source="images/pipe_top.png" Canvas.Top="0"/>
+		</Canvas>
+
+		<Canvas Name="obstacle2" Canvas.Left="200" Canvas.Top="0" Tag="up">
+			<Image Height="160" Width="26" Source="images/pipe_bottom.png" Canvas.Top="220"/>
+			<Image Height="160" Width="26" Source="images/pipe_top.png" Canvas.Top="0"/>
+		</Canvas>
+
+		<Canvas Name="obstacle3" Canvas.Left="300" Canvas.Top="0" Tag="up">
+			<Image Height="160" Width="26" Source="images/pipe_bottom.png" Canvas.Top="220"/>
+			<Image Height="160" Width="26" Source="images/pipe_top.png" Canvas.Top="0"/>
+		</Canvas>
+
+		<Canvas Name="obstacle4" Canvas.Left="400" Canvas.Top="0" Tag="up">
+			<Image Height="160" Width="26" Source="/images/pipe_bottom.png" Canvas.Top="220"/>
+			<Image Height="160" Width="26" Source="/images/pipe_top.png" Canvas.Top="0"/>
+		</Canvas>
+
+		<Image Name="flappyBird"  Height="12" Width="18" Source="images/flappy_bird.png" Canvas.Left="25" Canvas.Top="114"/>
+		<Label Name="scoreLabel" FontFamily="Comic Sans MS" Content="Score: 0"/>
 	</Canvas>
 </Window>
